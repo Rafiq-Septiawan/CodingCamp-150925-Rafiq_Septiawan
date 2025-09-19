@@ -1,0 +1,105 @@
+/* Body & Container */
+.app-body {
+  background-color: #111827; /* bg-gray-900 */
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-container {
+  background-color: #1f2937; /* bg-gray-800 */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Title */
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: black;
+}
+
+.btn-add {
+  background-color: #3b82f6; /* blue-500 */
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: 0.2s;
+}
+.btn-add:hover {
+  background-color: #2563eb; /* blue-600 */
+}
+
+/* Table */
+.table-wrapper {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.todo-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.todo-table thead tr {
+  background-color: #374151; /* bg-gray-700 */
+  text-align: left;
+}
+.todo-table th, 
+.todo-table td {
+  padding: 0.5rem 0.75rem;
+  color: #d1d5db; /* text-gray-300 */
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.btn-success {
+  background-color: #10b981; /* green-500 */
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  flex: 1;
+}
+.btn-success:hover {
+  background-color: #059669; /* green-600 */
+}
+
+.btn-danger {
+  background-color: #ef4444; /* red-500 */
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  flex: 1;
+}
+.btn-danger:hover {
+  background-color: #dc2626; /* red-600 */
+}
+
+/* Footer */
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9ca3af; /* text-gray-400 */
+}
