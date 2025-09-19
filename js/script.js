@@ -1,103 +1,97 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const taskInput = document.getElementById("taskInput");
-  const dateInput = document.getElementById("dateInput");
-  const addBtn = document.getElementById("addBtn");
-  const tableBody = document.getElementById("todo-table-body");
-  const filterSelect = document.getElementById("filter");
+  const inputTask = document.getElementById("taskInput");
+  const inputDate = document.getElementById("dateInput");
+  const btnAdd = document.getElementById("addBtn");
+  const tbody = document.getElementById("todo-table-body");
+  const filter = document.getElementById("filter");
+  const btnDeleteAll = document.getElementById("deleteAllBtn");
 
-  // Helper: format tanggal yyyy-mm-dd → dd/mm/yyyy
-  const formatDate = dateStr => {
-    const [y, m, d] = dateStr.split("-");
+  function formatTanggal(val) {
+    const [y, m, d] = val.split("-");
     return `${d}/${m}/${y}`;
-  };
+  }
 
-  // Helper: tampilkan baris "No task found"
-  function showEmptyRow() {
-    if (!document.getElementById("empty-row")) {
+  function tampilkanKosong() {
+    if (!document.getElementById("row-kosong")) {
       const row = document.createElement("tr");
-      row.id = "empty-row";
-      row.innerHTML = `
-        <td colspan="4" class="px-4 py-2 text-center text-gray-400">
-          No task found
-        </td>
-      `;
-      tableBody.appendChild(row);
+      row.id = "row-kosong";
+      row.innerHTML = `<td colspan="4" class="px-4 py-2 text-center italic text-gray-500">Belum ada laporan</td>`;
+      tbody.appendChild(row);
     }
   }
 
-  // Hapus baris "No task found" kalau ada task baru
-  function removeEmptyRow() {
-    const emptyRow = document.getElementById("empty-row");
-    if (emptyRow) emptyRow.remove();
+  function hapusKosong() {
+    const row = document.getElementById("row-kosong");
+    if (row) row.remove();
   }
 
-  // Tambah Todo
-  addBtn.addEventListener("click", () => {
-    const task = taskInput.value.trim();
-    const dueDate = dateInput.value;
+  btnAdd.addEventListener("click", () => {
+    const task = inputTask.value.trim();
+    const date = inputDate.value;
 
-    if (!task || !dueDate) {
-      alert("Isi dulu semua fieldnya!");
+    if (!task || !date) {
+      alert("Harap isi kolom yang kosong");
       return;
     }
 
-    removeEmptyRow();
+    hapusKosong();
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
       <td class="px-4 py-2">${task}</td>
-      <td class="px-4 py-2">${formatDate(dueDate)}</td>
+      <td class="px-4 py-2">${formatTanggal(date)}</td>
       <td class="px-4 py-2 status">Belum Selesai</td>
       <td class="px-4 py-2 flex gap-2">
-        <button class="bg-green-500 text-white px-2 py-1 rounded btn-success">Selesai</button>
-        <button class="bg-red-500 text-white px-2 py-1 rounded btn-danger">Hapus</button>
+        <button class="bg-green-500 text-white px-2 py-1 rounded btn-done">Selesai</button>
+        <button class="bg-red-500 text-white px-2 py-1 rounded btn-del">Hapus</button>
       </td>
     `;
 
-    // Tombol selesai
-    row.querySelector(".btn-success").addEventListener("click", () => {
-      const statusCell = row.querySelector(".status");
-      statusCell.textContent =
-        statusCell.textContent === "Belum Selesai" ? "Selesai ✅" : "Belum Selesai";
-      statusCell.style.color =
-        statusCell.textContent.includes("Selesai") ? "green" : "";
+    tr.querySelector(".btn-done").addEventListener("click", () => {
+      const cell = tr.querySelector(".status");
+      if (cell.textContent === "Belum Selesai") {
+        cell.textContent = "Selesai";
+        cell.style.color = "green";
+      } else {
+        cell.textContent = "Belum Selesai";
+        cell.style.color = "";
+      }
       applyFilter();
     });
 
-    // Tombol hapus
-    row.querySelector(".btn-danger").addEventListener("click", () => {
-      row.remove();
-      if (!tableBody.querySelector("tr")) {
-        showEmptyRow();
-      }
+    tr.querySelector(".btn-del").addEventListener("click", () => {
+      tr.remove();
+      if (!tbody.querySelector("tr")) tampilkanKosong();
     });
 
-    tableBody.appendChild(row);
+    tbody.appendChild(tr);
 
-    taskInput.value = "";
-    dateInput.value = "";
+    inputTask.value = "";
+    inputDate.value = "";
     applyFilter();
   });
 
-  // Filter
-  filterSelect.addEventListener("change", applyFilter);
-  function applyFilter() {
-    const filter = filterSelect.value;
-    const rows = tableBody.querySelectorAll("tr:not(#empty-row)");
+  btnDeleteAll.addEventListener("click", () => {
+    tbody.innerHTML = "";
+    tampilkanKosong();
+  });
 
-    rows.forEach(row => {
-      const statusCell = row.querySelector(".status");
-      if (!statusCell) return;
-      const status = statusCell.textContent.trim();
-      row.style.display =
-        filter === "all" ||
-        (filter === "pending" && status === "Belum Selesai") ||
-        (filter === "done" && status.startsWith("Selesai"))
-          ? ""
-          : "none";
+  filter.addEventListener("change", applyFilter);
+  function applyFilter() {
+    const val = filter.value;
+    const rows = tbody.querySelectorAll("tr:not(#row-kosong)");
+
+    rows.forEach(r => {
+      const status = r.querySelector(".status")?.textContent.trim();
+      if (val === "all" ||
+          (val === "pending" && status === "Belum Selesai") ||
+          (val === "done" && status === "Selesai")) {
+        r.style.display = "";
+      } else {
+        r.style.display = "none";
+      }
     });
   }
 
-  // Saat pertama kali load → tampilkan "No task found"
-  showEmptyRow();
+  tampilkanKosong();
 });

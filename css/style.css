@@ -1,57 +1,62 @@
 /* Body & Container */
 .app-body {
-  background-color: #111827; /* bg-gray-900 */
-  color: #fff;
+  background: #121212; /* agak lebih gelap */
+  color: #f0f0f0;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .todo-container {
-  background-color: #1f2937; /* bg-gray-800 */
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
   width: 100%;
   max-width: 700px;
 }
 
 /* Title */
 .title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.6rem;
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
 }
 
 /* Form */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 10px;
 }
 
 .input {
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  color: black;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  color: #111;
 }
 
 .btn-add {
-  background-color: #3b82f6; /* blue-500 */
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  transition: 0.2s;
+  background: #3b82f6;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.25s ease;
 }
 .btn-add:hover {
-  background-color: #2563eb; /* blue-600 */
+  background: #2563eb;
 }
 
 /* Table */
 .table-wrapper {
-  margin-top: 1.5rem;
+  margin-top: 20px;
   overflow-x: auto;
 }
 
@@ -59,47 +64,56 @@
   width: 100%;
   border-collapse: collapse;
 }
-.todo-table thead tr {
-  background-color: #374151; /* bg-gray-700 */
-  text-align: left;
+.todo-table thead {
+  background: #374151;
 }
 .todo-table th, 
 .todo-table td {
-  padding: 0.5rem 0.75rem;
-  color: #d1d5db; /* text-gray-300 */
+  padding: 10px 12px;
+  color: #e5e7eb;
+  border-bottom: 1px solid #2d3748;
+  font-size: 0.95rem;
 }
 
 /* Action Buttons */
 .action-buttons {
   display: flex;
-  gap: 0.5rem;
+  gap: 6px;
+}
+.btn-success,
+.btn-danger {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 .btn-success {
-  background-color: #10b981; /* green-500 */
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  flex: 1;
+  background: #10b981;
+  color: #fff;
 }
 .btn-success:hover {
-  background-color: #059669; /* green-600 */
+  background: #059669;
 }
-
 .btn-danger {
-  background-color: #ef4444; /* red-500 */
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  flex: 1;
+  background: #ef4444;
+  color: #fff;
 }
 .btn-danger:hover {
-  background-color: #dc2626; /* red-600 */
+  background: #dc2626;
+}
+
+/* Empty row (Tidak ada tugas) */
+#empty-row td {
+  font-style: italic;
+  color: #6b7280; /* abu keabu-an */
+  text-align: center;
 }
 
 /* Footer */
 .footer {
-  margin-top: 1.5rem;
+  margin-top: 20px;
   text-align: center;
-  font-size: 0.875rem;
-  color: #9ca3af; /* text-gray-400 */
+  font-size: 0.85rem;
+  color: #9ca3af;
 }

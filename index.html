@@ -11,34 +11,37 @@
   <div class="todo-container">
     <h2 class="title">LAPORAN CAPSTONE PROJECT</h2>
 
-    <!-- Form Input -->
+    <!-- form tambah data -->
     <form id="todoForm" class="form">
       <input type="text" id="taskInput" placeholder="Masukkan Laporan" class="input">
       <input type="date" id="dateInput" class="input">
-      <button type="button" id="addBtn" class="btn-add mb-6">
-        TAMBAH
-      </button>
+      <button type="button" id="addBtn" class="btn-add mb-6">TAMBAH</button>
     </form>
 
-    <!-- Filter -->
-    <div class="flex justify-end mb-3">
-      <label for="filter" class="mr-2">Filter:</label>
-      <select id="filter" class="px-2 py-1 rounded text-black">
-        <option value="all">Semua</option>
-        <option value="pending">Belum Selesai</option>
-        <option value="done">Selesai</option>
-      </select>
+    <!-- filter dan tombol hapus semua -->
+    <div class="flex justify-between mb-3">
+      <div>
+        <label for="filter" class="mr-2">Filter:</label>
+        <select id="filter" class="px-2 py-1 rounded text-black">
+          <option value="all">Semua</option>
+          <option value="pending">Belum Selesai</option>
+          <option value="done">Selesai</option>
+        </select>
+      </div>
+      <button id="deleteAllBtn" class="bg-red-600 text-white px-3 py-1 rounded">
+        Hapus Semua
+      </button>
     </div>
 
-    <!-- Tabel Todo -->
+    <!-- tabel daftar laporan -->
     <div class="table-wrapper">
       <table class="todo-table">
         <thead>
           <tr>
-            <th>Task</th>
-            <th>Due Date</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>LAPORAN</th>
+            <th>TANGGAL</th>
+            <th>STATUS</th>
+            <th>AKSI</th>
           </tr>
         </thead>
         <tbody id="todo-table-body">
